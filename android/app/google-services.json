@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "599552293687",
+    "project_id": "kidslearning-gohil",
+    "storage_bucket": "kidslearning-gohil.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:599552293687:android:c807c810db373be605b8b2",
+        "android_client_info": {
+          "package_name": "com.antinna.kidsadmin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "599552293687-nbpa97cshcjlvb0of0j93ub0hn343snm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_d5xEHxqHpzKHvhEVcingZKFNmS60OtA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "599552293687-nbpa97cshcjlvb0of0j93ub0hn343snm.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "599552293687-47v83oe372bi5kplb37i70g7v1uq7c5m.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.antinna.kidslearning"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:599552293687:android:29b2831069ba32ac05b8b2",
+        "android_client_info": {
+          "package_name": "com.antinna.kidslearning"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "599552293687-nbpa97cshcjlvb0of0j93ub0hn343snm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_d5xEHxqHpzKHvhEVcingZKFNmS60OtA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "599552293687-nbpa97cshcjlvb0of0j93ub0hn343snm.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "599552293687-47v83oe372bi5kplb37i70g7v1uq7c5m.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.antinna.kidslearning"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
