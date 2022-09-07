@@ -133,7 +133,8 @@ class _ListStudentPageState extends State<ListStudentPage> {
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => UpdateStudentPage(
-                                          indx: storedocs[i]['indx']),
+                                          dbName: widget.dbName,
+                                          indx: storedocs[i]['indx'].toString()),
                                     ),
                                   )
                                 },

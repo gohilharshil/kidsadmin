@@ -107,7 +107,6 @@ class _AddStudentPageState extends State<AddStudentPage> {
                   ),
                   controller: titleController,
                   validator: (value) {
-                    
                     return null;
                   },
                 ),
@@ -186,6 +185,7 @@ class _AddStudentPageState extends State<AddStudentPage> {
                             imageUrl = imageController.text;
                             addUser();
                             clearText();
+                            Navigator.of(context).pop();
                           });
                         }
                       },
