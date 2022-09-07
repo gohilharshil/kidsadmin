@@ -65,7 +65,7 @@ class _AddStudentPageState extends State<AddStudentPage> {
           'videoUrl': videoLink,
           'indx': indx,
           'imageUrl': imageUrl.toString()
-        })
+        }, SetOptions(merge: true))
         .then((value) => print('Video Data Added'))
         .catchError((error) => print('Failed to Add Video Data: $error'));
   }

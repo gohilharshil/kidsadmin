@@ -127,22 +127,23 @@ class _ListStudentPageState extends State<ListStudentPage> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              IconButton(
-                                onPressed: () => {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => UpdateStudentPage(
-                                          dbName: widget.dbName,
-                                          indx: storedocs[i]['indx'].toString()),
-                                    ),
-                                  )
-                                },
-                                icon: Icon(
-                                  Icons.edit,
-                                  color: Colors.orange,
-                                ),
-                              ),
+                              // IconButton(
+                              //   onPressed: () => {
+                              //     Navigator.push(
+                              //       context,
+                              //       MaterialPageRoute(
+                              //         builder: (context) => UpdateDataPage(
+                              //             dbName: widget.dbName,
+                              //             docId:
+                              //                 storedocs[i]['indx'].toString()),
+                              //       ),
+                              //     )
+                              //   },
+                              //   icon: Icon(
+                              //     Icons.edit,
+                              //     color: Colors.orange,
+                              //   ),
+                              // ),
                               IconButton(
                                 onPressed: () =>
                                     {deleteUser(storedocs[i]['indx'])},
