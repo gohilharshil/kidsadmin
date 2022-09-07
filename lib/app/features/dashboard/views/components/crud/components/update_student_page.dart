@@ -166,12 +166,10 @@ class _UpdateStudentPageState extends State<UpdateStudentPage> {
                               // Validate returns true if the form is valid, otherwise false.
                               if (_formKey.currentState!.validate()) {
                                 updateUser(
-                                        title: title,
-                                        videoUrl: videoUrl,
-                                        indx: indx,
-                                        imageUrl: imageUrl)
-                                    .then(
-                                        (value) => Navigator.of(context).pop());
+                                    title: title,
+                                    videoUrl: videoUrl,
+                                    indx: indx,
+                                    imageUrl: imageUrl);
                               }
                             },
                             child: Text(
