@@ -130,7 +130,7 @@ class _ListStudentPageState extends State<ListStudentPage> {
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => UpdateStudentPage(
-                                          id: storedocs[i]['id']),
+                                          indx: storedocs[i]['indx']),
                                     ),
                                   )
                                 },
@@ -141,7 +141,7 @@ class _ListStudentPageState extends State<ListStudentPage> {
                               ),
                               IconButton(
                                 onPressed: () =>
-                                    {deleteUser(storedocs[i]['id'])},
+                                    {deleteUser(storedocs[i]['indx'])},
                                 icon: Icon(
                                   Icons.delete,
                                   color: Colors.red,

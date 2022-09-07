@@ -36,6 +36,7 @@ class DashboardScreen extends GetView<DashboardController> {
                         dbName: selectedCategoryName,
                       ));
                   //selectedCategoryName
+                  //if you wish to use this style then make the selec index as obserble or rx int
                 },
                 child: Icon(
                   Icons.arrow_forward_ios,

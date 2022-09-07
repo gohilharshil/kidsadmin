@@ -2,10 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class UpdateStudentPage extends StatefulWidget {
-  final String id;
+  final String indx;
   String? dbName;
   //add more
-  UpdateStudentPage({Key? key, this.dbName, required this.id})
+  UpdateStudentPage({Key? key, this.dbName, required this.indx})
       : super(key: key);
 
   @override
@@ -20,20 +20,16 @@ class _UpdateStudentPageState extends State<UpdateStudentPage> {
       FirebaseFirestore.instance.collection(widget.dbName!);
 
   Future<void> updateUser(
-      {String? id,
-      String? title,
-      String? videoUrl,
-      int? indx,
-      String? imageUrl}) {
+      {String? title, String? videoUrl, int? indx, String? imageUrl}) {
     return data
-        .doc(id)
+        .doc(indx.toString())
         .update({
           'title': title,
           'videoUrl': videoUrl,
           'indx': indx,
           'imageUrl': imageUrl
         })
-        .then((value) =>  Navigator.pop(context))
+        .then((value) => Navigator.pop(context))
         .catchError((error) => print("Failed to update data: $error"));
   }
 
@@ -49,7 +45,7 @@ class _UpdateStudentPageState extends State<UpdateStudentPage> {
           child: FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
             future: FirebaseFirestore.instance
                 .collection(widget.dbName!)
-                .doc(widget.id)
+                .doc(widget.indx.toString())
                 .get(),
             builder: (_, snapshot) {
               if (snapshot.hasError) {
@@ -73,7 +69,7 @@ class _UpdateStudentPageState extends State<UpdateStudentPage> {
                       margin: EdgeInsets.symmetric(vertical: 10.0),
                       child: TextFormField(
                         initialValue: title,
-                        autofocus: false,
+                        
                         onChanged: (value) => title = value,
                         decoration: InputDecoration(
                           labelText: 'title: ',
@@ -94,7 +90,7 @@ class _UpdateStudentPageState extends State<UpdateStudentPage> {
                       margin: EdgeInsets.symmetric(vertical: 10.0),
                       child: TextFormField(
                         initialValue: videoUrl,
-                        autofocus: false,
+                       
                         onChanged: (value) => videoUrl = value,
                         decoration: InputDecoration(
                           labelText: 'videoUrl: ',
@@ -117,9 +113,9 @@ class _UpdateStudentPageState extends State<UpdateStudentPage> {
                       margin: EdgeInsets.symmetric(vertical: 10.0),
                       child: TextFormField(
                         initialValue: indx,
-                        autofocus: false,
+                        
                         onChanged: (value) => indx = value,
-                        obscureText: true,
+                       
                         decoration: InputDecoration(
                           labelText: 'indx: ',
                           labelStyle: TextStyle(fontSize: 20.0),
@@ -139,7 +135,6 @@ class _UpdateStudentPageState extends State<UpdateStudentPage> {
                       margin: EdgeInsets.symmetric(vertical: 10.0),
                       child: TextFormField(
                         initialValue: imageUrl,
-                        autofocus: false,
                         onChanged: (value) => title = value,
                         decoration: InputDecoration(
                           labelText: 'ImageUrl: ',
@@ -162,12 +157,10 @@ class _UpdateStudentPageState extends State<UpdateStudentPage> {
                               // Validate returns true if the form is valid, otherwise false.
                               if (_formKey.currentState!.validate()) {
                                 updateUser(
-                                    id: widget.id,
                                     title: title,
                                     videoUrl: videoUrl,
                                     indx: indx,
                                     imageUrl: imageUrl);
-                               
                               }
                             },
                             child: Text(

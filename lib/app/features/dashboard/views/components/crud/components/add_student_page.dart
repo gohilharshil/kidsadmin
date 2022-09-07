@@ -1,11 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+import 'last_index.dart';
+
 class AddStudentPage extends StatefulWidget {
   final String? dbName;
-  final int? nextIndex;
-  const AddStudentPage({this.dbName, this.nextIndex, Key? key})
-      : super(key: key);
+
+  const AddStudentPage({this.dbName, Key? key}) : super(key: key);
 
   @override
   _AddStudentPageState createState() => _AddStudentPageState();
@@ -16,7 +17,8 @@ class _AddStudentPageState extends State<AddStudentPage> {
 
   var title = "";
   String? videoLink;
-  late int? indx = widget.nextIndex;
+  int? get indxr => Indx().indx;
+  int? indx;
   String? imageUrl;
   // Create a text controller and use it to retrieve the current value
   // of the TextField.
@@ -48,7 +50,13 @@ class _AddStudentPageState extends State<AddStudentPage> {
 
   Future<void> addUser() {
     return category
-        .add({'title': title, 'videoUrl': videoLink, 'indx': indx})
+        .doc(indx.toString())
+        .set({
+          'title': title,
+          'videoUrl': videoLink,
+          'indx': indx,
+          'imageUrl': imageUrl.toString()
+        })
         .then((value) => print('Video Data Added'))
         .catchError((error) => print('Failed to Add Video Data: $error'));
   }
@@ -68,7 +76,6 @@ class _AddStudentPageState extends State<AddStudentPage> {
               Container(
                 margin: EdgeInsets.symmetric(vertical: 10.0),
                 child: TextFormField(
-                  autofocus: false,
                   decoration: InputDecoration(
                     labelText: 'Title: ',
                     labelStyle: TextStyle(fontSize: 20.0),
@@ -88,7 +95,6 @@ class _AddStudentPageState extends State<AddStudentPage> {
               Container(
                 margin: EdgeInsets.symmetric(vertical: 10.0),
                 child: TextFormField(
-                  autofocus: false,
                   decoration: InputDecoration(
                     labelText: 'Video Link: ',
                     labelStyle: TextStyle(fontSize: 20.0),
@@ -111,8 +117,6 @@ class _AddStudentPageState extends State<AddStudentPage> {
                 margin: EdgeInsets.symmetric(vertical: 10.0),
                 child: TextFormField(
                   keyboardType: TextInputType.number,
-                  autofocus: false,
-                  obscureText: false,
                   decoration: InputDecoration(
                     labelText: 'At Index: ',
                     labelStyle: TextStyle(fontSize: 20.0),
@@ -122,7 +126,9 @@ class _AddStudentPageState extends State<AddStudentPage> {
                   ),
                   controller: indxController,
                   validator: (value) {
-                    if (value == null || value.isEmpty) {
+                    if (value == null ||
+                        value.isEmpty ||
+                        (Indx().indx == null)) {
                       return 'Please Enter Index';
                     }
                     return null;
@@ -132,7 +138,6 @@ class _AddStudentPageState extends State<AddStudentPage> {
               Container(
                 margin: EdgeInsets.symmetric(vertical: 10.0),
                 child: TextFormField(
-                  autofocus: false,
                   decoration: InputDecoration(
                     labelText: 'Image Url ',
                     labelStyle: TextStyle(fontSize: 20.0),
@@ -157,7 +162,9 @@ class _AddStudentPageState extends State<AddStudentPage> {
                           setState(() {
                             title = titleController.text;
                             videoLink = videoLinkController.text;
-                            indx = int.parse(indxController.text);
+                            indx = (indxController.text.length != null)
+                                ? int.parse(indxController.text)
+                                : indxr;
                             imageUrl = imageController.text;
                             addUser();
                             clearText();
