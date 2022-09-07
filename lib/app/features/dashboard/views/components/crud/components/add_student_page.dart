@@ -72,7 +72,7 @@ class _AddStudentPageState extends State<AddStudentPage> {
     FlutterClipboard.paste().then((value) {
       setState(() {
         videoLinkController.text = value;
-        indxController.text = IndxService.indx.text;
+        indxController.text = IndxService.indx.toString();
       });
     });
   }
