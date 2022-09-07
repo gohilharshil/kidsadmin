@@ -93,9 +93,6 @@ class _UpdateStudentPageState extends State<UpdateStudentPage> {
                               TextStyle(color: Colors.redAccent, fontSize: 15),
                         ),
                         validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please Enter title';
-                          }
                           return null;
                         },
                       ),
@@ -126,7 +123,6 @@ class _UpdateStudentPageState extends State<UpdateStudentPage> {
                     Container(
                       margin: EdgeInsets.symmetric(vertical: 10.0),
                       child: TextFormField(
-                        
                         initialValue: indx,
                         onChanged: (value) => indx = value,
                         decoration: InputDecoration(
