@@ -176,7 +176,7 @@ class _AddStudentPageState extends State<AddStudentPage> {
                           setState(() {
                             title = titleController.text;
                             videoLink = videoLinkController.text;
-                            indx = (indxController.text.length != null)
+                            indx = (indxController.text.length > 0)
                                 ? int.parse(indxController.text)
                                 : IndxService.indx;
                             imageUrl = imageController.text;
