@@ -1,9 +1,13 @@
-class Indx {
-  int? get indx => _indx;
+import 'package:get_storage/get_storage.dart';
 
-  void setindx(int? indx) {
+class Indx {
+  dynamic get indx => _indx;
+
+  void setindx(dynamic indx) {
     _indx = indx;
+    saveIndx(indx);
   }
 
-  int? _indx;
+  dynamic _indx = GetStorage().read("indx");
+  void saveIndx(dynamic indx) => GetStorage().write("indx", indx);
 }

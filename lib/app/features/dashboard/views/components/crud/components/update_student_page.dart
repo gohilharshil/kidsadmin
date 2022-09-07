@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+import 'package:clipboard/clipboard.dart';
+
 class UpdateStudentPage extends StatefulWidget {
   final String indx;
   String? dbName;
@@ -14,6 +16,7 @@ class UpdateStudentPage extends StatefulWidget {
 
 class _UpdateStudentPageState extends State<UpdateStudentPage> {
   final _formKey = GlobalKey<FormState>();
+  TextEditingController videoUrlController = TextEditingController();
 
   // Updaing Student
   late CollectionReference data =
@@ -31,6 +34,18 @@ class _UpdateStudentPageState extends State<UpdateStudentPage> {
         })
         .then((value) => Navigator.pop(context))
         .catchError((error) => print("Failed to update data: $error"));
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    FlutterClipboard.paste().then((value) {
+      setState(() {
+        videoUrlController.text = value;
+      });
+    });
   }
 
   @override
@@ -69,7 +84,6 @@ class _UpdateStudentPageState extends State<UpdateStudentPage> {
                       margin: EdgeInsets.symmetric(vertical: 10.0),
                       child: TextFormField(
                         initialValue: title,
-                        
                         onChanged: (value) => title = value,
                         decoration: InputDecoration(
                           labelText: 'title: ',
@@ -89,8 +103,8 @@ class _UpdateStudentPageState extends State<UpdateStudentPage> {
                     Container(
                       margin: EdgeInsets.symmetric(vertical: 10.0),
                       child: TextFormField(
+                        controller: videoUrlController,
                         initialValue: videoUrl,
-                       
                         onChanged: (value) => videoUrl = value,
                         decoration: InputDecoration(
                           labelText: 'videoUrl: ',
@@ -112,10 +126,9 @@ class _UpdateStudentPageState extends State<UpdateStudentPage> {
                     Container(
                       margin: EdgeInsets.symmetric(vertical: 10.0),
                       child: TextFormField(
-                        initialValue: indx,
                         
+                        initialValue: indx,
                         onChanged: (value) => indx = value,
-                       
                         decoration: InputDecoration(
                           labelText: 'indx: ',
                           labelStyle: TextStyle(fontSize: 20.0),

@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:kidsadmin/app/features/dashboard/views/components/crud/components/last_index.dart';
 import 'package:kidsadmin/app/features/dashboard/views/components/crud/components/update_student_page.dart';
 
+import '../../../../../../../servicelocator.dart';
+
 class ListStudentPage extends StatefulWidget {
   String? dbName;
   ListStudentPage({this.dbName, Key? key}) : super(key: key);
@@ -13,6 +15,7 @@ class ListStudentPage extends StatefulWidget {
 }
 
 class _ListStudentPageState extends State<ListStudentPage> {
+  static Indx get IndxService => ServiceLocator.get<Indx>();
   late Stream<QuerySnapshot> dataStream =
       FirebaseFirestore.instance.collection(widget.dbName!).snapshots();
 
@@ -42,13 +45,13 @@ class _ListStudentPageState extends State<ListStudentPage> {
             );
           }
           final List storedocs = [];
-          Indx().setindx(storedocs.length);
 
           snapshot.data!.docs.map((DocumentSnapshot document) {
             Map a = document.data() as Map<String, dynamic>;
             storedocs.add(a);
             a['id'] = document.id;
           }).toList();
+          IndxService.setindx(snapshot.data!.docs.length);
 
           return Container(
             margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
@@ -68,7 +71,7 @@ class _ListStudentPageState extends State<ListStudentPage> {
                           color: Colors.greenAccent,
                           child: Center(
                             child: Text(
-                              'Title',
+                              'indx',
                               style: TextStyle(
                                 fontSize: 20.0,
                                 fontWeight: FontWeight.bold,
@@ -112,7 +115,7 @@ class _ListStudentPageState extends State<ListStudentPage> {
                       children: [
                         TableCell(
                           child: Center(
-                              child: Text(storedocs[i]['title'],
+                              child: Text(storedocs[i]['indx'],
                                   style: TextStyle(fontSize: 18.0))),
                         ),
                         TableCell(

@@ -1,5 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:kidsadmin/servicelocator.dart';
 
 import 'app/config/routes/app_pages.dart';
 import 'app/config/themes/app_theme.dart';
@@ -9,6 +11,9 @@ import 'package:get/get.dart';
 import 'firebase_options.dart';
 
 void main() async {
+  await GetStorage.init();
+  ServiceLocator
+      .init();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
   options: DefaultFirebaseOptions.currentPlatform,

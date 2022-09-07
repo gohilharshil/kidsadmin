@@ -1,6 +1,8 @@
+import 'package:clipboard/clipboard.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../../../servicelocator.dart';
 import 'last_index.dart';
 
 class AddStudentPage extends StatefulWidget {
@@ -13,11 +15,12 @@ class AddStudentPage extends StatefulWidget {
 }
 
 class _AddStudentPageState extends State<AddStudentPage> {
+  static Indx get IndxService => ServiceLocator.get<Indx>();
   final _formKey = GlobalKey<FormState>();
 
   var title = "";
   String? videoLink;
-  int? get indxr => Indx().indx;
+
   int? indx;
   String? imageUrl;
   // Create a text controller and use it to retrieve the current value
@@ -59,6 +62,19 @@ class _AddStudentPageState extends State<AddStudentPage> {
         })
         .then((value) => print('Video Data Added'))
         .catchError((error) => print('Failed to Add Video Data: $error'));
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    FlutterClipboard.paste().then((value) {
+      setState(() {
+        videoLinkController.text = value;
+        indxController.text = IndxService.indx.text;
+      });
+    });
   }
 
   @override
@@ -126,9 +142,7 @@ class _AddStudentPageState extends State<AddStudentPage> {
                   ),
                   controller: indxController,
                   validator: (value) {
-                    if (value == null ||
-                        value.isEmpty ||
-                        (Indx().indx == null)) {
+                    if (value == null || value.isEmpty) {
                       return 'Please Enter Index';
                     }
                     return null;
@@ -164,7 +178,7 @@ class _AddStudentPageState extends State<AddStudentPage> {
                             videoLink = videoLinkController.text;
                             indx = (indxController.text.length != null)
                                 ? int.parse(indxController.text)
-                                : indxr;
+                                : IndxService.indx;
                             imageUrl = imageController.text;
                             addUser();
                             clearText();

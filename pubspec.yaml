@@ -46,8 +46,8 @@ dependencies:
   # # range_slider_dialog:
   # speech_to_text: ^5.5.0
   # get:
-  # get_it:
-  # get_storage:
+  get_it:
+  get_storage:
   # sms_autofill:
   #  #location
   # geolocator:
@@ -91,6 +91,7 @@ dependencies:
   # path_provider: 
   
   cached_network_image: ^3.2.1 # important
+  clipboard: 
   # flutter_ringtone_player:
   # wakelock: 
  
