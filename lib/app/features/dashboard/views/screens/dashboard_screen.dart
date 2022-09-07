@@ -32,9 +32,9 @@ class DashboardScreen extends GetView<DashboardController> {
         floatingActionButton: selectedService >= 0
             ? FloatingActionButton(
                 onPressed: () {
-                  Get.to(HomePage(
-                    dbName: selectedCategoryName,
-                  ));
+                  Get.to(() => HomePage(
+                        dbName: selectedCategoryName,
+                      ));
                   //selectedCategoryName
                 },
                 child: Icon(
@@ -75,40 +75,47 @@ class DashboardScreen extends GetView<DashboardController> {
           selectedService = index;
         selectedCategoryName = name;
       },
-      child: AnimatedContainer(
-        duration: Duration(milliseconds: 100),
-        padding: EdgeInsets.all(10.0),
-        decoration: BoxDecoration(
-          color: selectedService == index
-              ? Colors.blue.shade50
-              : Colors.grey.shade100,
-          border: Border.all(
+      child: InkWell(
+        onTap: () {
+          Get.to(() => HomePage(
+                dbName: name.toString(),
+              ));
+        },
+        child: AnimatedContainer(
+          duration: Duration(milliseconds: 100),
+          padding: EdgeInsets.all(10.0),
+          decoration: BoxDecoration(
             color: selectedService == index
-                ? Colors.green
-                : Colors.green.withOpacity(0),
-            width: 2.0,
+                ? Colors.blue.shade50
+                : Colors.grey.shade100,
+            border: Border.all(
+              color: selectedService == index
+                  ? Colors.green
+                  : Colors.green.withOpacity(0),
+              width: 2.0,
+            ),
+            borderRadius: BorderRadius.circular(20.0),
           ),
-          borderRadius: BorderRadius.circular(20.0),
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                CachedNetworkImage(
+                    imageUrl: image,
+                    height: 80,
+                    placeholder: (context, url) =>
+                        Center(child: CircularProgressIndicator()),
+                    errorWidget: (context, url, error) => Image.asset(
+                        'assets/img/age-group.png', //TODO PATH TO LOGO IMAGE
+                        height: 80)), //todo
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  name,
+                  style: TextStyle(fontSize: 20),
+                )
+              ]),
         ),
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              CachedNetworkImage(
-                  imageUrl: image,
-                  height: 80,
-                  placeholder: (context, url) =>
-                      Center(child: CircularProgressIndicator()),
-                  errorWidget: (context, url, error) => Image.asset(
-                      'assets/img/age-group.png', //TODO PATH TO LOGO IMAGE
-                      height: 80)), //todo
-              SizedBox(
-                height: 20,
-              ),
-              Text(
-                name,
-                style: TextStyle(fontSize: 20),
-              )
-            ]),
       ),
     );
   }
