@@ -90,7 +90,7 @@ dependencies:
   # # emoji_picker: 
   # path_provider: 
   
-  # cached_network_image: ^3.2.1 # important
+  cached_network_image: ^3.2.1 # important
   # flutter_ringtone_player:
   # wakelock: 
  
