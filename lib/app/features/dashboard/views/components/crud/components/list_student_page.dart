@@ -49,7 +49,7 @@ class _ListStudentPageState extends State<ListStudentPage> {
           snapshot.data!.docs.map((DocumentSnapshot document) {
             Map a = document.data() as Map<String, dynamic>;
             storedocs.add(a);
-            a['id'] = document.id;
+            a['indx'] = document.id;
           }).toList();
           IndxService.setindx(snapshot.data!.docs.length);
 
